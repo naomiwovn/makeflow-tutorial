@@ -1,0 +1,222 @@
+
+
+rm prereq 
+*intro makeflow
+*intro workqueue
+
+diagram flow chart 
+pictures 
+
+- too much text
+
+Tutorial
+instructions
+
+cmd line env
+
+###########################
+->binder
+	service look at git -> jupyter notebook
+
+1st instance
+	child _for atmo
+	now binder
+###########################
+
+3.2 link to makeflow image
+	check if installed
+
+3.3 4.1
+ 	ex avail skip to example
+ 	chg to JX
+ 		1st sim example in jx
+
+ 		4 sep rules
+ 		loop = easier
+ 		definition = easier
+
+ 	now makeflow -j 1 (1 core run it itself local)
+ 	show run agiain with nothing left to do
+
+ 	chanege something so they see how it runs only new or different things
+ 		otherwise thothing left to do
+
+
+ 	THINK IN TERMS OF WORKFLOW 
+ 		using output files w/in other role
+
+ 	rule 1
+ 	rule 2 use output of rule 1
+
+ 	rule 3 other
+
+ 	(.dag)image makeflow_viz give makefile 
+ 		turns it to .dot
+ 	use dot to make it a gif
+
+ 	visualize the stuff
+
+##### makeflow tut done ##################
+
+##### makeflow workqueue ########
+currently 
+	mk.file - rules
+	clean
+
+	run master 
+	different - (-T wq)
+		-T other commands possible
+			pbs
+			wq - wait for workers
+
+	new shell make worker
+		number port
+		-N project-$USER
+##################################
+
+## Next time ### 
+using containers
+################
+
+
+intro
+concept map
+
+tut
+atmo link to atmo
+	export PATH=/opt/cctools/bin:$PATH
+
+	workflow manag for dist comp
+
+binder click binder 
+	customize env (srch how to cust env on binder)
+	docker file
+		instuct to run cctools in docker
+
+
+hackmd - rst file
+
+
+
+Makeflow ##########################################################################################
+
+Makeflow is a workflow system for executing large complex workflows on clusters, clouds, and grids.
+
+- **Makeflow is easy to use.** The Makeflow language is similar to traditional Make, so if you can write a Makefile, then you can write a Makeflow. A workflow can be just a few commands chained together, or it can be a complex application consisting of thousands of tasks. It can have an arbitrary DAG structure and is not limited to specific patterns.
+
+- **Makeflow is production-ready.** Makeflow is used on a daily basis to execute complex scientific applications in fields such as data mining, high energy physics, image processing, and bioinformatics. It has run on campus clusters, the Open Science Grid, NSF XSEDE machines, NCSA Blue Waters, and Amazon Web Services. Here are some real examples of workflows used in production systems:
+
+- **Makeflow is portable.** A workflow is written in a technology neutral way, and then can be deployed to a variety of different systems without modification, including local execution on a single multicore machine, public cloud services such as Amazon EC2 and Amazon Lambda, batch systems like HTCondor, SGE, PBS, Torque, SLURM, or the bundled Work Queue system. Makeflow can also easily run your jobs in a container environment like Docker or Singularity on top of an existing batch system. The same specification works for all systems, so you can easily move your application from one system to another without rewriting everything.
+
+- **Makeflow is powerful.** Makeflow can handle workloads of millions of jobs running on thousands of machines for months at a time. Makeflow is highly fault tolerant: it can crash or be killed, and upon resuming, will reconnect to running jobs and continue where it left off. A variety of analysis tools are available to understand the performance of your jobs, measure the progress of a workflow, and visualize what is going on.
+##########################################################################################
+
+
+WorkQueue
+##########################################################################################
+
+Work Queue is a framework for building large master-worker applications that span thousands of machines drawn from clusters, clouds, and grids. Work Queue applications are written in C, Perl, or Python using a simple API that allows users to define tasks, submit them to the queue, and wait for completion. Tasks are executed by a standard worker process that can run on any available machine. Each worker calls home to the master process, arranges for data transfer, and executes the tasks. The system handles a wide variety of failures, allowing for dynamically scalable and robust applications.
+
+Work Queue has been used to write applications that scale from a handful of workstations up to tens of thousands of cores running on supercomputers. Examples include Lobster, NanoReactors, ForceBalance, Accelerated Weighted Ensemble, the SAND genome assembler, the Makeflow workflow engine, and the All-Pairs and Wavefront abstractions. The framework is easy to use, and has been used to teach courses in parallel computing, cloud computing, distributed computing, and cyberinfrastructure at the University of Notre Dame, the University of Arizona, and the University of Wisconsin - Eau Claire.
+
+##########################################################################################
+
+
+Makeflow Tutorial
+###########################################################################################
+
+Getting Started
+	contents
+		Intro Makeflow
+
+		Intro Workqueue
+		
+		Install
+			atmosphere vm
+				check install
+			binder
+
+		Makeflow Example
+			JX 1 rule echo "Hello Makeflow" input.txt
+			JX 3 rules manual
+			run local 
+
+		Makeflow Clean
+			run again -> nothing left to do
+			run makeflow --jx example.jx --clean
+
+		Super Makeflow Example
+			JX 4 rules loop
+			Definition
+
+
+
+
+Link to run on atmosphere
+----------------------------------------------------
+Image
+follow this tutorial to learn how to set up a VM on cyverse 
+https://cyverse-container-camp-workshop-2018.readthedocs-hosted.com/en/latest/atmosphere/boot.html
+
+Use the following image
+https://atmo.cyverse.org/application/images/1743
+
+Launch instance & or Install 
+----------------------------------------------------
+ssh cyverse_username@VM-IP
+yes
+cyverse passwd
+
+sudo apt-get update && sudo apt-get upgrade
+
+apt install coop-computing-tools
+
+check install
+makeflow --version
+
+OR
+
+	Makeflow is part of the Cooperating Computing Tools, which is easy to install. In most cases, you can just build from source and install in your home directory like this:
+
+	git clone https://github.com/Cooperatinive-computing-lab/cctools cctools-source
+
+	cd cctools-source
+	./configure
+	make
+	make install
+
+	Then, set your path to include the appropriate directory. If you use bash, do this:
+
+	export PATH=${HOME}/cctools/bin:$PATH
+
+	Or if you use tcsh, do this:
+	setenv PATH ${HOME}/cctools/bin:$PATH
+----------------------------------------------------
+
+hello_makeflow.jx
+
+{
+   "rules": [
+      {
+          "command" : "echo hello world > output.txt",
+          "outputs" : [ "output.txt" ],
+          "inputs" : [ ],
+      }
+      {
+          "command" : "echo hello world > output.txt",
+          "outputs" : [ "output.txt" ],
+          "inputs" : [ ],
+      }
+   ]
+}
+
+
+
+Binder
+----------------------------------------------------
+
+----------------------------------------------------
+
+
+
+###########################################################################################
